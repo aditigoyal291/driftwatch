@@ -15,6 +15,7 @@ dependencies = [
     "typer>=0.12",
     "pyarrow",
     "faker",
+    "pyiceberg[sql-sqlite]",
 ]
 
 [project.optional-dependencies]
@@ -33,15 +34,26 @@ packages = ["src/driftwatch"]
 # Make `import driftwatch` resolve without an install when running tests locally.
 pythonpath = ["src"]
 testpaths = ["tests"]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
 
 [tool.mypy]
 python_version = "3.11"
 strict = true
 files = ["src/driftwatch", "scripts"]
+# Allow sibling imports between demo scripts (e.g. seed_iceberg_data -> seed_demo_data).
+mypy_path = ["scripts"]
 
-# pyarrow and faker ship incomplete/no stubs; ignore missing imports for them.
+# pyarrow, faker, and pyiceberg ship incomplete/no stubs; ignore missing imports.
 [[tool.mypy.overrides]]
-module = ["pyarrow", "pyarrow.*", "faker", "faker.*"]
+module = [
+    "pyarrow",
+    "pyarrow.*",
+    "faker",
+    "faker.*",
+    "pyiceberg",
+    "pyiceberg.*",
+]
 ignore_missing_imports = true
 
 [tool.ruff]
