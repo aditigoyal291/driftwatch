@@ -64,7 +64,7 @@ DriftWatch ships with a self-contained local lakehouse (Iceberg tables backed by
 
 ## Roadmap
 
-- [ ] Core schema snapshot + drift detection engine
+- [x] Core schema snapshot + drift detection engine
 - [ ] AI diagnosis layer with structured incident reports
 - [ ] CLI (`driftwatch watch`, `driftwatch diagnose`)
 - [ ] Local Iceberg demo environment with synthetic data + drift simulation
