@@ -13,6 +13,8 @@ authors = [{ name = "DriftWatch Contributors" }]
 dependencies = [
     "pydantic>=2.0",
     "typer>=0.12",
+    "pyarrow",
+    "faker",
 ]
 
 [project.optional-dependencies]
@@ -35,12 +37,17 @@ testpaths = ["tests"]
 [tool.mypy]
 python_version = "3.11"
 strict = true
-files = ["src/driftwatch"]
+files = ["src/driftwatch", "scripts"]
+
+# pyarrow and faker ship incomplete/no stubs; ignore missing imports for them.
+[[tool.mypy.overrides]]
+module = ["pyarrow", "pyarrow.*", "faker", "faker.*"]
+ignore_missing_imports = true
 
 [tool.ruff]
 target-version = "py311"
 line-length = 88
-src = ["src", "tests"]
+src = ["src", "tests", "scripts"]
 
 [tool.ruff.lint]
 # Reasonable production defaults: pycodestyle, pyflakes, isort, bugbear, upgrades.

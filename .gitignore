@@ -35,3 +35,6 @@ Thumbs.db
 # Environment / secrets
 .env
 .env.*
+
+# Generated demo data (from scripts/seed_demo_data.py)
+data/
