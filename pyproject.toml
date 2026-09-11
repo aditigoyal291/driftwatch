@@ -16,6 +16,7 @@ dependencies = [
     "pyarrow",
     "faker",
     "pyiceberg[sql-sqlite]",
+    "anthropic",
 ]
 
 [project.optional-dependencies]
@@ -44,7 +45,7 @@ files = ["src/driftwatch", "scripts"]
 # Allow sibling imports between demo scripts (e.g. seed_iceberg_data -> seed_demo_data).
 mypy_path = ["scripts"]
 
-# pyarrow, faker, and pyiceberg ship incomplete/no stubs; ignore missing imports.
+# Third-party packages with incomplete/no stubs.
 [[tool.mypy.overrides]]
 module = [
     "pyarrow",
@@ -53,6 +54,8 @@ module = [
     "faker.*",
     "pyiceberg",
     "pyiceberg.*",
+    "anthropic",
+    "anthropic.*",
 ]
 ignore_missing_imports = true
 
